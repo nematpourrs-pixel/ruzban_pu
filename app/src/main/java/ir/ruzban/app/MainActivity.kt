@@ -41,7 +41,7 @@ class MainActivity : Activity() {
   web.webViewClient = object : WebViewClient() {
    override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
     val uri = request.url
-    val prefix = base.path.orEmpty().let { if (it.endsWith('/')) it else "$"+"it/" }
+    val prefix = base.path.orEmpty().let { if (it.endsWith('/')) it else it + "/" }
     if (uri.scheme=="https" && uri.host==base.host && uri.path.orEmpty().startsWith(prefix)) return false
     if (uri.scheme=="https" || uri.scheme=="tel" || uri.scheme=="mailto")
      try { startActivity(Intent(Intent.ACTION_VIEW,uri)) } catch (_:Exception) {}
